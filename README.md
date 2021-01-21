@@ -13,6 +13,7 @@
 * [볼링공 고르기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/greedy_training/5_2.py)
 * [무지의 먹방 라이브](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/greedy_training/6.py)
 
+
 2. 구현
 * [럭키 스트레이트](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/ps_training/7_2.py)
 * [문자열 재정렬](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/ps_training/8_2.py)
@@ -33,6 +34,7 @@
 * [감시 피하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/20_2.py)
 * [인구 이동](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/21_2.py)
 * [블록 이동하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/22_2.py)
+
 
 4. 정렬
 * [국영수](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/23_2.py)
