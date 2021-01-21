@@ -33,3 +33,9 @@
 * [감시 피하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/20_2.py)
 * [인구 이동](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/21_2.py)
 * [블록 이동하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/dfs_bfs_training/22_2.py)
+
+4. 정렬
+* [국영수](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/23_2.py)
+* [안테나](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/24_2.py)
+* [실패율](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/25_2.py)
+* [카드 정렬하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/26_2.py)
