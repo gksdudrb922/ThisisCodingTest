@@ -41,3 +41,10 @@
 * [안테나](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/24_2.py)
 * [실패율](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/25_2.py)
 * [카드 정렬하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/sorting_training/26_2.py)
+
+
+5. 이진 탐색
+* [정렬된 배열에서 특정 수의 개수 구하기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/binary_search_training/27_2.py)
+* [고정점 찾기](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/binary_search_training/28_2.py)
+* [공유기 설치](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/binary_search_training/29_2.py)
+* [가사 검색](https://github.com/gksdudrb922/ThisisCodingTest/blob/master/binary_search_training/30_2.py)
