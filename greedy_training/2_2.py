@@ -10,13 +10,22 @@
 만들어질 수 있는 가장 큰 수
 """
 # study
-data=input()
-result=int(data[0])
-for i in range(1,len(data)):
-    num=int(data[i])
-    if result<=1 or num<=1:
-        result+=num
+data = input()
+
+# 첫 번째 문자를 숫자로 변경하여 대입
+result = int(data[0])
+
+for i in range(1, len(data)):
+    # 두 수 중에서 하나라도 '0' 혹은 '1'인 경우, 곱하기보다는 더하기 수행
+    num = int(data[i])
+    if num <= 1 or result <= 1:
+        result += num
     else:
-        result*=num
+        result *= num
+
 print(result)
 # O(n), n=len(data)
+"""
+// learn
+my code와 동일한 풀이다.
+"""

@@ -11,18 +11,12 @@ N개의 동전을 이용하여 만들 수 없는 양의 정수 금액 중 최솟
 # my code
 n=int(input())
 data=list(map(int,input().split()))
-result=0
-if 1 not in data:
-  result=1
-elif n==1:
-  result=n
-else:
-  data.sort()
-  sum=data[0]
-  for i in range(1,n):
-    sum+=data[i]
-    if i==n-1 or (data[i+1]-sum)>=2:
-      result=sum+1
-      break
+data.sort()
+sum=0
+for i in range(n):
+  if sum+1<data[i]:
+    break
+  sum+=data[i]
+result=sum+1
 print(result)
 # O(nlogn)

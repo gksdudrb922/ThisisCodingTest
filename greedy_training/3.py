@@ -9,17 +9,21 @@
 뒤집기 최소 횟수
 """
 # my code
-data=input()
-original=int(data[0])
-flag=0
-result=0
-for i in range(1,len(data)):
-  if int(data[i]) != original:
-    flag=1
-  if flag==1 and (int(data[i])==original or i==len(data)-1):
-    flag=0
-    result+=1
-if result==0:
-  result=1
-print(result)
+s=input()
+count0=0 #0으로 바꿔야 하는 count
+count1=0 #1로 바꿔야 하는 count
+data=s[0]
+if data=='1':
+  count0+=1
+else:
+  count1+=1
+
+for i in range(1,len(s)):
+  if data!=s[i]:
+    if s[i]=='1':
+      count0+=1
+    else:
+      count1+=1
+    data=s[i]
+print(min(count0,count1))
 # O(n)
