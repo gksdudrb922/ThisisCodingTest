@@ -47,12 +47,8 @@ def solution(n, build_frame):
             if not possible(answer): # 가능한 구조물인지 확인
                 answer.remove([x, y, stuff]) # 가능한 구조물이 아니라면 다시 제거
     return sorted(answer) # 정렬된 결과를 반환
-
-n=5
-build_frame=	[[1,0,0,1],[1,1,1,1],[2,1,0,1],[2,2,1,1],[5,0,0,1],[5,1,0,1],[4,2,1,1],[3,2,1,1]]
-print(solution(n,build_frame))
-# O(n3), n=len(build_frame)
+# O(m3), m=len(build_frame)
 """
 // learn
-거의 my code와 동일한 메커니즘이다.
+my code와 같은 풀이다.
 """

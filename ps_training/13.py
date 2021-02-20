@@ -46,3 +46,30 @@ for chicken in chicken_combi:
   result=min(result,city_distance(house,chicken))
 print(result)
 # O(n3)
+
+#new
+from itertools import combinations
+n,m=map(int,input().split())
+city=[]
+houses=[]
+chicken_home=[]
+for i in range(n):
+  city.append(list(map(int,input().split())))
+  for j in range(n):
+    if city[i][j]==1:
+      houses.append((i,j))
+    elif city[i][j]==2:
+      chicken_home.append((i,j))
+
+
+chicken_combinations=list(combinations(chicken_home,m))
+result=1e9
+for chickens in chicken_combinations:
+  city_chicken_distance=0
+  for house in houses:
+    chicken_distance=100
+    for chicken in chickens:
+      chicken_distance=min(chicken_distance,abs(house[0]-chicken[0])+abs(house[1]-chicken[1]))
+    city_chicken_distance+=chicken_distance
+  result=min(result,city_chicken_distance)
+print(result)

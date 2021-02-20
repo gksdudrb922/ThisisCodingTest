@@ -34,11 +34,9 @@ def solution(s):
         # 만들어지는 압축 문자열이 가장 짧은 것이 정답
         answer = min(answer, len(compressed))
     return answer
-
-s = "zxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-print(solution(s))
 # O(n2), n=len(s)
 """
 // learn
-range : 중감값 조절 가능
+my code와 동일한 풀이다. 
+for문에서 3번 째 항으로 증감값을 설정할 수 있다는 것을 기억하자. while문에 비해 더 깔끔하다.
 """

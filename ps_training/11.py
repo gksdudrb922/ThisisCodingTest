@@ -78,3 +78,64 @@ while True:
 
 print(result)
 # O(1)
+
+#new
+n = int(input())
+data = [[0] * (n + 2) for _ in range(n + 2)]
+for i in range(n + 2):
+    for j in range(n + 2):
+        if i == 0 or j == 0 or i == n + 1 or j == n + 1:
+            data[i][j] = 1
+
+k = int(input())
+for _ in range(k):
+    x, y = map(int, input().split())
+    data[x][y] = 2
+
+l = int(input())
+directions = dict()
+for _ in range(l):
+    temp = list(input().split())
+    directions[int(temp[0])] = temp[1]
+
+x, y = 1, 1
+data[1][1] = 1
+snake = [(1, 1)]
+tail = 0
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]  # 북, 동, 남, 서
+d_index = 1  # 동
+count = 0
+while True:
+    count += 1
+    x = x + dx[d_index]
+    y = y + dy[d_index]
+
+    if data[x][y] == 1:
+        break
+
+    if data[x][y] == 2:
+        data[x][y] = 1
+        snake.append((x, y))
+    else:  # 0
+        data[x][y] = 1
+        snake.append((x, y))
+        data[snake[tail][0]][snake[tail][1]] = 0
+        tail += 1
+
+    if count in directions:
+        if directions[count] == 'L':
+            d_index = 3 if d_index == 0 else d_index - 1
+        else:
+            d_index = 0 if d_index == 3 else d_index + 1
+
+print(count)
+#O(1)
+"""
+// learn
+뱀의 이동경로를 list로 표현했다. 뱀의 꼬리를 자를 때, 시간을 단축하기 위해 remove를 사용하지 않고
+tail 인덱스를 통해 꼬리를 표현했다.
+문제에서 n은 100이하라 괜찮지만 만약 n값이 엄청 크다면 메모리 공간이 부족해질 수 있기 때문에
+이전 코드처럼 deque를 통해 뱀의 이동경로를 나타내는 것도 좋은 방법이다. 
+또한 new 코드처럼 (n+2)*(n+2)로 map을 확장해 벽으로 둘러싸는 것도 좋은 방법이다.
+"""

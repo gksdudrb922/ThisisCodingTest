@@ -10,15 +10,15 @@
 """
 # my code
 s=input()
-list=[]
+slist=[]
 sum=0
-for c in s:
-  if 'A'<=c<='Z':
-    list.append(c)
-  elif '0'<=c<='9':
-    sum+=int(c)
-result="".join(sorted(list))
+for data in list(s):
+  if '0'<=data<='9':
+    sum+=int(data)
+  else:
+    slist.append(data)
+slist.sort()
 if sum!=0:
-  result+=str(sum)
-print(result)
+  slist.append(str(sum))
+print(''.join(slist))
 # O(nlogn), n = len(s)
