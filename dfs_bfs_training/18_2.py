@@ -65,8 +65,9 @@ def solution(p):
                 u[i] = '('
         answer += "".join(u)
     return answer
-# O(n2)
+# O(??)
 """
 // learn
-문자열을 슬라이싱으로 다루는 데 익숙해지자.
+my code와 동일한 풀이다.
+다만, 초기에 u를 뗴어내는 로직과 올바른 괄호 문자열임을 구하는 로직이 살짝 다르다.
 """

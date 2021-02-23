@@ -21,35 +21,33 @@ N+2번째 줄에는 S, X, Y가 공백을 기준으로 구분되어 주어진다.
 S초 뒤에 (X,Y)에 존재하는 바이러스의 종류를 출력한다. 만약 S초 뒤에 해당 위치에 바이러스가 존재하지 않는다면, 0을 출력한다.
 """
 # my code
+from collections import deque
 n,k=map(int,input().split())
 graph=[]
-for _ in range(n):
-  graph.append(list(map(int,input().split())))
-virus_list=set()
-for i in range(n):
-  for j in range(n):
-    if graph[i][j] != 0:
-      virus_list.add(graph[i][j])
-virus_list=sorted(list(virus_list))
-s,result_x,result_y=map(int,input().split())
+data=[]
 dx=[-1,1,0,0]
 dy=[0,0,-1,1]
-def bfs():
-  for _ in range(s):
-    for virus in virus_list:
-      visited=[[False]*n for _ in range(n)]
-      for x in range(n):
-        for y in range(n):
-          if graph[x][y]==virus and visited[x][y]==False:
-            visited[x][y]=True
-            for i in range(4):
-              nx=x+dx[i]
-              ny=y+dy[i]
-              if 0<=nx<n and 0<=ny<n and graph[nx][ny]==0:
-                graph[nx][ny]=virus
-                visited[nx][ny]=True
-                if nx==result_x-1 and ny==result_y-1:
-                  return graph[nx][ny]
-  return 0
-print(bfs())
-# O(skn2), 시간초과 발생
+for i in range(n):
+  graph.append(list(map(int,input().split())))
+  for j in range(n):
+    if graph[i][j]!=0:
+      data.append((graph[i][j],0,i,j))
+s,result_x,result_y=map(int,input().split())
+data=sorted(data,key=lambda x:x[0])
+
+q=deque(data)
+result=0
+while q:
+  virus,count,x,y=q.popleft()
+  if x==result_x-1 and y==result_y-1 and count<=s:
+    result=virus
+    break
+  for i in range(4):
+    nx=x+dx[i]
+    ny=y+dy[i]
+    if 0<=nx<n and 0<=ny<n and graph[nx][ny]==0:
+      graph[nx][ny]=virus
+      q.append((virus,count+1,nx,ny))
+
+print(result)
+# O(n2)

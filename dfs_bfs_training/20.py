@@ -72,3 +72,57 @@ for obstacles in blank_combi:
     break
 print(result)
 # O(nC3*n2)
+
+#new
+n = int(input())
+graph = []
+teachers = []
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+for i in range(n):
+  graph.append(list(input().split()))
+  for j in range(n):
+    if graph[i][j] == 'T':
+      teachers.append((i, j))
+
+result = 'NO'
+def dfs(count):
+  global result
+  if count == 3:
+    for x, y in teachers:
+      temp = (x, y)
+      for i in range(4):
+        x, y = temp
+        while True:
+          x = x + dx[i]
+          y = y + dy[i]
+
+          if not (0 <= x < n and 0 <= y < n) or graph[x][y] == 'O':
+            break
+
+          elif graph[x][y] == 'S':
+            return
+    result = 'YES'
+
+  else:
+    for i in range(n):
+      for j in range(n):
+        if graph[i][j] == 'X':
+          graph[i][j] = 'O'
+          count += 1
+          dfs(count)
+          count -= 1
+          graph[i][j] = 'X'
+
+
+dfs(0)
+print(result)
+"""
+// learn
+19번 문제에서 배운대로 
+count-=1
+dfs()
+count+=1
+구조를 통해 장애물을 설치하는 순서를 결정하고 해당 조건이 맞으면(count==3) 원하는 로직을 구현하는
+코드를 작성해 보았다.
+"""

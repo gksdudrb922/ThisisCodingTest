@@ -19,35 +19,44 @@ v는 빈 문자열이 될 수 있습니다.
 올바른 괄호 문자열로 변환한 결과
 """
 # my code
-def correct_paren(p):
-  if p[0]!='(' or p.count('(')!=p.count(')'):
+def check(u):
+  if u[0] == '(' and u[len(u) - 1] == ')':
+    return True
+  else:
     return False
-  return True
+
 
 def solution(p):
-  if len(p)==0:
-    return ''
+  # 1
+  if len(p) == 0:
+    return p
 
-  u=''
-  v=''
-  for paren in p:
-    if len(u)==0 or u.count('(')!=u.count(')'):
-      u+=paren
+  # 2
+  u = ''
+  v = ''
+  for c in p:
+    if u.count('(') != u.count(')') or len(u) == 0:
+      u += c
     else:
-      v+=paren
-  if correct_paren(u)==True:
-    return u+solution(v)
+      v += c
+
+  # 3
+  if check(u) == True:
+    # 3-1
+    return u + solution(v)
+
+  # 4
   else:
-    result='('
-    result+=solution(v)
-    result+=')'
-    temp=list(u[1:len(u)-1])
+    # 4-1,2,3
+    x = '(' + solution(v) + ')'
+    # 4-4
+    temp = list(u[1:len(u) - 1])
     for i in range(len(temp)):
-      if temp[i]=='(':
-        temp[i]=')'
+      if temp[i] == '(':
+        temp[i] = ')'
       else:
-        temp[i]='('
+        temp[i] = '('
     u = ''.join(temp)
-    result+=u
-    return result
-# O(n2)
+    # 4-5
+    return x + u
+# O(??)

@@ -14,52 +14,58 @@ N*M 연구소에서 빈칸, 벽, 바이러스가 있다. 바이러스는 상하�
 # my code
 from itertools import combinations
 from collections import deque
-import copy
-
-def bfs(x, y, data):
-    queue = deque()
-    queue.append((x, y))
-    while queue:
-        x, y = queue.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if nx < 0 or nx >= n or ny < 0 or ny >= m:
-                continue
-            if data[nx][ny] == 1 or data[nx][ny] == 2:
-                continue
-            if data[nx][ny] == 0:
-                data[nx][ny] = 2
-                queue.append((nx, ny))
-    return data
-
 
 n, m = map(int, input().split())
 data = []
-blank = []
-virus = []
+blanks = []
+viruses = []
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
-result = 0
-for _ in range(n):
-    data.append(list(map(int, input().split())))
 for i in range(n):
+    data.append(list(map(int, input().split())))
     for j in range(m):
         if data[i][j] == 0:
-            blank.append((i, j))
+            blanks.append((i, j))
         elif data[i][j] == 2:
-            virus.append((i, j))
-walls = list(combinations(blank, 3))
-for wall in walls:
-    count = 0
-    temp = copy.deepcopy(data)
-    for x, y in wall:
+            viruses.append((i, j))
+
+blanks_combi = list(combinations(blanks, 3))
+temp = [[0] * m for _ in range(n)]
+result = 0
+
+
+def bfs(x, y, data):
+    q = deque([(x, y)])
+
+    while q:
+        x, y = q.popleft()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < n and 0 <= ny < m and data[nx][ny] == 0:
+                q.append((nx, ny))
+                data[nx][ny] = 2
+
+
+for blank_three in blanks_combi:
+    for i in range(n):
+        for j in range(m):
+            temp[i][j] = data[i][j]
+
+    for x, y in blank_three:
         temp[x][y] = 1
-    for x, y in virus:
-        temp = bfs(x, y, temp)
-    for row in temp:
-        count += row.count(0)
+
+    for x, y in viruses:
+        bfs(x, y, temp)
+
+    count = 0
+    for i in range(n):
+        for j in range(m):
+            if temp[i][j] == 0:
+                count += 1
+
     result = max(result, count)
 
 print(result)
-# O(NM C 3)
+# O(nmC3 * nm)

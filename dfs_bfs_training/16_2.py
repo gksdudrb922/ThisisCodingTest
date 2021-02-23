@@ -77,6 +77,7 @@ print(result)
 # O(??)
 """
 // learn
-시간은 my code보다 오래걸리는 것으로 보인다.
 DFS를 활용했는데, my code와 완전히 다른 로직이라 숙지해두면 좋을 것 같다.
+my code처럼 combinations을 사용하지 않고 벽 3개 세우는 과정을 DFS로 구현했다.
+virus를 퍼뜨리는 것 또한 DFS로 구현했다.
 """

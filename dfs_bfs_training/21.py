@@ -16,7 +16,7 @@ r행 c열에 주어지는 정수는 A[r][c]의 값이다. (0 ≤ A[r][c] ≤ 100
 // output
 인구 이동이 몇 번 발생하는지 첫째 줄에 출력한다.
 """
-# study, 풀지 못함
+# my code
 from collections import deque
 
 # 땅의 크기(N), L, R 값을 입력받기
@@ -82,13 +82,6 @@ while True:
 print(total_count)
 # 약 O(n4) -> PyPy3로만 통과
 """
-// learn
-visited -> union으로 사용
-자료구조 -> (x,y)
-united, summary, count를 사용해서 bfs에서 나라 별 인구 수 계산까지 한 번에 했다. 
-
-기본 그래프에는 최대한 입력 값만 넣는 것이 좋다. 그룹핑해서 넣어도 튜플은 값을 변경할 수 없기 때문이다.
-단, 방문정보와 자료구조에 대해 고민한다.
-문제에서 count, summary의 경우 각 나라마다 고유의 값이 아니라 공통의 값이기 때문에
-자료구조에 따로 넣지 않고 공통의 리스트나 값으로 빼준다.
+study code를 변형해서 짠 코드다.
+여기서 bfs는 그룹핑 역할까지만 하고 group_count, group_summary 리스트를 통해 인구 수를 계산한다.
 """

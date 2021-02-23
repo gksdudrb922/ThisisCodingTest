@@ -22,33 +22,57 @@ S초 뒤에 (X,Y)에 존재하는 바이러스의 종류를 출력한다. 만약
 """
 # study
 from collections import deque
-n,k=map(int,input().split())
-graph=[]
-data=[]
+
+n, k = map(int, input().split())
+
+graph = []  # 전체 보드 정보를 담는 리스트
+data = []  # 바이러스에 대한 정보를 담는 리스트
+
 for i in range(n):
-  graph.append(list(map(int,input().split())))
+  # 보드 정보를 한 줄 단위로 입력
+  graph.append(list(map(int, input().split())))
   for j in range(n):
-    if graph[i][j]!=0:
-      data.append((graph[i][j],0,i,j))
+    # 해당 위치에 바이러스가 존재하는 경우
+    if graph[i][j] != 0:
+      # (바이러스 종류, 시간, 위치 X, 위치 Y) 삽입
+      data.append((graph[i][j], 0, i, j))
+
+# 정렬 이후에 큐로 옮기기 (낮은 번호의 바이러스가 먼저 증식하므로)
 data.sort()
-q=deque(data)
-target_s,target_x,target_y=map(int,input().split())
-dx=[-1,0,1,0]
-dy=[0,1,0,-1]
+q = deque(data)
+
+target_s, target_x, target_y = map(int, input().split())
+
+# 바이러스가 퍼져나갈 수 있는 4가지의 위치
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+# 너비 우선 탐색(BFS) 진행
 while q:
-  virus,s,x,y=q.popleft()
-  if s==target_s:
+  virus, s, x, y = q.popleft()
+  # 정확히 s초가 지나거나, 큐가 빌 때까지 반복
+  if s == target_s:
     break
+  # 현재 노드에서 주변 4가지 위치를 각각 확인
   for i in range(4):
-    nx=x+dx[i]
-    ny=y+dy[i]
-    if 0<=nx<n and 0<=ny<n and graph[nx][ny]==0:
-      graph[nx][ny]=virus
-      q.append((virus,s+1,nx,ny))
-print(graph[target_x-1][target_y-1])
+    nx = x + dx[i]
+    ny = y + dy[i]
+    # 해당 위치로 이동할 수 있는 경우
+    if 0 <= nx and nx < n and 0 <= ny and ny < n:
+      # 아직 방문하지 않은 위치라면, 그 위치에 바이러스 넣기
+      if graph[nx][ny] == 0:
+        graph[nx][ny] = virus
+        q.append((virus, s + 1, nx, ny))
+
+print(graph[target_x - 1][target_y - 1])
 # O(n2)
 """
 // learn
-bfs에 대한 이해가 아직 안된 것 같다. 큐를 사용해서 n2으로 충분히 만들 수 있다.
-시간을 반복문으로 돌리는 것이 아닌 count의 개념으로 생각하자.
+my code와 동일한 풀이다.
+다만, 반복문 종료조건의 차이가 있다.
+my code는 시간이 s보다 흐르기 전에 target_x, target_y에 바이러스가 생기면 종료하고 그 때의 바이러스를 출력한다.
+stduy code는 시간이 s까지 흘렀을 때 종료하고 graph[target_x-1][target_y-1]을 출력한다.
+키 포인트는 큐에 바이러스, 시간, x좌표, y좌표를 한 번에 저장하는 것이다.
+
+자료구조에서 함께 처리해야 하는 정보에 대해서는 한 번에 튜플로 묶어서 자료구조에 저장하는 것이 편하다.
 """
