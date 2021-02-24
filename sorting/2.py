@@ -21,3 +21,17 @@ result=sorted(data,key=less_score)
 for info in result:
   print(info[0],end=' ')
 # O(nlogn)
+
+#new
+n=int(input())
+data=dict()
+for _ in range(n):
+  a,b=input().split()
+  data[a]=int(b)
+data=sorted(data.items(),key=lambda x:x[1])
+for name in data:
+  print(name[0],end=' ')
+"""
+// learn
+사전 방식을 추가했다. items() 메서드를 사용했다.
+"""
