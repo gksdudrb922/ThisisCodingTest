@@ -38,8 +38,10 @@ def solution(N, stages):
     # 정렬된 스테이지 번호 반환
     answer = [i[0] for i in answer]
     return answer
-# O(nlogn or nlen(stages))
+# O(nlen(stages))
 """
 // learn
-count를 계산함과 동시에 fail 값을 구한다. -> 좀더 간결한 코드
+my code는 count 리스트를 따로 만들었지만
+study code는 count를 계산함과 동시에 fail 값을 구한다.
+서로 시간복잡도의 차이가 있다.
 """

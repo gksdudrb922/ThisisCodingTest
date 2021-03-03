@@ -14,20 +14,23 @@ stages는 1 ~ N+1의 자연수가 담겨있다. N+1은 모든 스테이지를 �
 """
 # my code
 def solution(N, stages):
-  count=[0]*(n+2)
-  for i in range(len(stages)):
-    count[stages[i]]+=1
-  fail=[]
-  for i in range(1,len(count)-1):
-    s=sum(count[i:])
-    if s>0:
-      rate=count[i]/s
-      fail.append((i,rate))
+  count = [0] * (N + 2)
+  for i in range(len((stages))):
+    count[stages[i]] += 1
+
+  data = []
+  for i in range(1, N + 1):
+    summary = sum(count[i:])
+    if summary > 0:
+      fail = count[i] / summary
     else:
-      fail.append((i,0))
-  result=sorted(fail,key=lambda x:(-x[1],x[0]))
-  answer=[]
-  for x in result:
-    answer.append(x[0])
+      fail = 0
+    data.append((i, fail))
+
+  data = sorted(data, key=lambda x: (-x[1], x[0]))
+
+  answer = []
+  for i in data:
+    answer.append(i[0])
   return answer
-# O(nlogn or len(stages))
+# O(n2 or len(stages))

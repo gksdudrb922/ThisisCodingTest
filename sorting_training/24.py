@@ -12,15 +12,9 @@
 첫째 줄에 안테나를 설치할 위치의 값을 출력한다.
 단, 안테나를 설치할 수 있는 위치 값으로 여러 개의 값이 도출될 경우 가장 작은 값을 출력한다.
 """
-# study
-n = int(input())
-a = list(map(int, input().split()))
-a.sort()
-
-# 중간값(median)을 출력
-print(a[(n - 1) // 2])
+# my code
+n=int(input())
+data=list(map(int,input().split()))
+data.sort()
+print(data[len(data)//2-1])
 # O(nlogn)
-"""
-// learn
-my code와 동일한 풀이다.
-"""
