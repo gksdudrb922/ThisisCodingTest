@@ -11,25 +11,28 @@ N개의 부품에서 M개 종류의 부품이 있는지 확인한다.
 손님이 요청한 부품 번호의 순서대로 부품을 확인해 있으면 yes, 없으면 no를 출력한다.
 """
 # my code
-def binary_search(data,start,end,target):
-  if start>end:
-    return False
-  mid=(start+end)//2
-  if data[mid]==target:
-    return True
-  if data[mid]<target:
-    return binary_search(data,mid+1,end,target)
-  else:
-    return binary_search(data,start,mid-1,target)
-
+import sys
+input=sys.stdin.readline
 n=int(input())
 data=list(map(int,input().split()))
-m=int(input())
-target=list(map(int,input().split()))
 data.sort()
-for x in target:
-  if binary_search(data,0,n-1,x)==True:
-    print('yes',end=' ')
+m=int(input())
+demand=list(map(int,input().split()))
+
+def binary_search(target,start,end):
+  if start>end:
+    return None
+  mid=(start+end)//2
+  if data[mid]==target:
+    return mid
+  elif data[mid]>target:
+    return binary_search(target,start,mid-1)
   else:
-    print('no',end=' ')
+    return binary_search(target,mid+1,end)
+
+for target in demand:
+  if binary_search(target,0,len(data)-1)==None:
+    print('no', end=' ')
+  else:
+    print('yes', end=' ')
 # O((m+n)logn)
