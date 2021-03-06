@@ -40,5 +40,5 @@ else:
 # O(logn)
 """
 // learn
-my code와 동일하다.
+my code와 동일한 풀이다.
 """

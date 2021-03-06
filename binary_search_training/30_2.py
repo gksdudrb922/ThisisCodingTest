@@ -21,7 +21,7 @@ queries의 길이(검색 키워드 개수)는 2 이상 100,000 이하다.
 // output
 각 키워드 별로 매치된 단어가 몇 개인지 순서대로 배열에 담아 반환한다.
 """
-# study, 풀지 못함
+# study
 from bisect import bisect_left, bisect_right
 
 # 값이 [left_value, right_value]인 데이터의 개수를 반환하는 함수
@@ -53,10 +53,10 @@ def solution(words, queries):
         # 검색된 단어의 개수를 저장
         answer.append(res)
     return answer
-# O(nlogn)
+# O(aloga or blogb), a=len(words), b=len(queries)
 """
 // learn
-bisect를 사용한다.
-모든 단어를 길이마다 나누어서 저장한 뒤 각각 정렬한다는 것이 중요하다.
-이후 와일드카드를 a, z로 바꾸어 그 사이값의 개수를 구한다.
+my code와 동일한 풀이다.
+다만, my code에서는 left_value, right_value를 슬라이싱으로 계산했다면,
+study code는 replace를 사용했다. replace는 O(n)이지만 문자열의 최대 길이가 10,000이기에 무리가 없다.
 """
