@@ -25,7 +25,3 @@ for i in range(1, len(data)):
 
 print(result)
 # O(n), n=len(data)
-"""
-// learn
-my code와 동일한 풀이다.
-"""

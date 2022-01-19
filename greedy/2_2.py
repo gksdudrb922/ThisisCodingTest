@@ -21,15 +21,9 @@ result = 0
 for i in range(n):
     data = list(map(int, input().split()))
     # 현재 줄에서 '가장 작은 수' 찾기
-    min_value = 10001
-    for a in data:
-        min_value = min(min_value, a)
+    min_value = min(data)
     # '가장 작은 수'들 중에서 가장 큰 수 찾기
     result = max(result, min_value)
 
 print(result) # 최종 답안 출력
 # O(nm)
-"""
-// learn
-이중 루프를 사용했는데 my code가 더 깔끔하다.
-"""

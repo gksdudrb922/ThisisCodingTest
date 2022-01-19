@@ -11,14 +11,16 @@
 N이 1이 될 때까지 1번 혹은 2번의 과정을 수행해야 하는 횟수의 최솟값
 """
 # my code
-n,k=map(int,input().split())
-result=0
-while n>1:
-  if n%k==0:
-    n//=k
-  else:
-    n-=1
-  result+=1
+n, k = map(int, input().split())
+
+result = 0
+while n != 1:
+    if n % k == 0:
+        n //= k
+    else:
+        n -= 1
+    result += 1
+
 print(result)
 # O(n)
 

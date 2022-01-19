@@ -9,14 +9,17 @@ N개의 동전을 이용하여 만들 수 없는 양의 정수 금액 중 최솟
 주어진 동전들로 만들 수 없는 양의 정수 금액 중 최솟값
 """
 # my code
-n=int(input())
-data=list(map(int,input().split()))
+n = int(input())
+data = list(map(int, input().split()))
+
 data.sort()
-sum=0
-for i in range(n):
-  if sum+1<data[i]:
-    break
-  sum+=data[i]
-result=sum+1
+
+result = 0
+for x in data:
+    if result + 1 < x:
+        break
+    result += x
+
+result += 1
 print(result)
 # O(nlogn)

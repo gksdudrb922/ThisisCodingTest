@@ -6,16 +6,19 @@
 가장 큰 수를 구한다.
 // input
 첫째 줄 -> 여러 개의 숫자로 구성된 문자열 S (len(S) : 1 ~ 20)
-// ouput
+// output
 만들어질 수 있는 가장 큰 수
 """
 # my code
-s=list(map(int,list(input())))
-result=s[0]
-for i in range(1,len(s)):
-  if result<=1 or s[i]<=1:
-    result+=s[i]
-  else:
-    result*=s[i]
+s = input()
+
+result = 0
+for i in s:
+    num = int(i)
+    if num <= 1 or result <= 1:
+        result += num
+    else:
+        result *= int(i)
+
 print(result)
 # O(n), n=len(s)

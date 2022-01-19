@@ -13,11 +13,11 @@ N*M 형태의 카드들이 있다. 가장 높은 숫자가 쓰인 카드 한 장
 게임의 룰에 맞게 선택한 카드에 적힌 숫자
 """
 # my code
-n,m=map(int,input().split())
-data=[]
-result=0
+n, m = map(int, input().split())
+result = 0
 for i in range(n):
-  data.append(list(map(int,input().split())))
-  result=max(result,min(data[i]))
+    data = list(map(int, input().split()))
+    result = max(result, min(data))
+
 print(result)
 # O(nm)

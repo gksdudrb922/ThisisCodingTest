@@ -10,19 +10,19 @@ N개의 수로 이루어진 배열이 있을 때 주어진 수들을 M번 더하
 큰 수의 법첵이 따라 더해진 답
 """
 # my code
-n,m,k=map(int,input().split())
-data=list(map(int,input().split()))
-first=max(data)
-data.remove(first)
-second=max(data)
-result=0
-cnt=0
-for _ in range(m):
-  if cnt<k:
-    result+=first
-    cnt+=1
-  else:
-    result+=second
-    cnt=0
+n, m, k = map(int, input().split())
+data = list(map(int, input().split()))
+
+data.sort()
+
+result = 0
+first = data[-1]
+second = data[-2]
+for i in range(m):
+    if (i + 1) % (k + 1) != 0:
+        result += first
+    else:
+        result += second
+
 print(result)
-# O(min(N,M))
+# O(nlogn + m)

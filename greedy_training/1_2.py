@@ -25,7 +25,3 @@ for i in data: # 공포도를 낮은 것부터 하나씩 확인하며
 
 print(result) # 총 그룹의 수 출력
 # O(nlogn)
-"""
-// learn
-my code와 동일한 풀이다.
-"""

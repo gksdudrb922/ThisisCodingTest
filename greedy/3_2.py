@@ -13,7 +13,6 @@ N이 1이 될 때까지 1번 혹은 2번의 과정을 수행해야 하는 횟수
 # study
 # N, K공백을 기준으로 구분하여 입력 받기
 n, k = map(int, input().split())
-
 result = 0
 
 while True:

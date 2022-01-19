@@ -26,5 +26,5 @@ print(target)
 """
 // learn
 my code와 동일한 풀이다.
-다만, 여기서는 target을 my code의 sum+1로 잡았다.
+다만, 여기서는 target을 my code의 result+1로 잡았다.
 """
