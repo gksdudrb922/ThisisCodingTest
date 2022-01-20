@@ -29,7 +29,3 @@ for step in steps:
 
 print(result)
 # O(1)
-"""
-// learn
-기존 dx, dy 두 리스트를 사용하는 것 대신 튜플로 구성된 리스트를 사용할 수 있다.
-"""

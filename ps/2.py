@@ -19,41 +19,40 @@ N*M 크기의 맵에서 다음 조건에 따라 캐릭터가 움직인다.
 이동을 마친 후 캐릭터가 방문한 칸의 수
 """
 # my code
-n,m=map(int,input().split())
-x,y,direction=map(int,input().split())
-data=[]
+n, m = map(int, input().split())
+x, y, d = map(int, input().split())
+data = []
 for _ in range(n):
-  data.append(list(map(int,input().split())))
+    data.append(list(map(int, input().split())))
 
-dx=[-1,0,1,0]
-dy=[0,1,0,-1]
-result=1
-data[x][y]=2
-count=0
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+data[x][y] = 2
+result = 1
+
+direction = d
 while True:
-  left=3 if direction-1==-1 else direction-1
-  nx=x+dx[left]
-  ny=y+dy[left]
+    direction = 3 if direction == -1 else direction - 1
 
-  if data[nx][ny]==0:
-    data[nx][ny]=2
-    direction=left
-    x=nx
-    y=ny
-    result+=1
-    count=0
+    if direction == d:
+        direction = (direction + 2) % 4
+        nx = x + dx[direction]
+        ny = y + dy[direction]
 
-  else: # 1 or 2
-    direction=left
-    count+=1
-    if count==4:
-      back_x=x+dx[(direction+2)%4]
-      back_y=y+dy[(direction+2)%4]
-      if data[back_x][back_y]!=1:
-        x=back_x
-        y=back_y
-      else:
-        break;
-      count=0
+        if data[nx][ny] == 1:
+            break
+        else:
+            x, y = nx, ny
+
+    nx = x + dx[direction]
+    ny = y + dy[direction]
+
+    if data[nx][ny] == 0:
+        data[nx][ny] = 2
+        x, y = nx, ny
+        d = direction
+        result += 1
+
 print(result)
 # O(NM), N,M이 50 이하이기 때문에 사실상 O(1)
