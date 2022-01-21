@@ -8,13 +8,22 @@ N의 자릿수를 반으로 나누어 양 쪽의 자릿수들의 합이 같다�
 럭키 스트레이트를 사용할 수 있다면 "LUCKY", 그렇지 않다면 "READY"
 """
 # my code
-data=list(input())
-sum1=0
-sum2=0
-for i in range(len(data)//2):
-  sum1+=int(data[i])
-for i in range(len(data)//2,len(data)):
-  sum2+=int(data[i])
-result="LUCKY" if sum1==sum2 else "READY"
-print(result)
+n = input()
+
+length = len(n)
+first = n[:length//2]
+second = n[length//2:]
+
+first_sum = 0
+for x in first:
+    first_sum += ord(x) - ord('0')
+
+second_sum = 0
+for x in second:
+    second_sum += ord(x) - ord('0')
+
+if first_sum == second_sum:
+    print('LUCKY')
+else:
+    print('READY')
 # O(1)

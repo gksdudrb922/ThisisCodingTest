@@ -53,8 +53,3 @@ for candidate in candidates:
 
 print(result)
 # O(n3)
-"""
-// learn
-my code와 거의 유사하다.
-for x,y in data: 구문, 1e9와 같은 수 표현
-"""

@@ -84,12 +84,12 @@ def simulate():
     return time
 
 print(simulate())
-# O(1)
+
+
+# O(n3)
 """
 // learn
-my code와 같은 풀이다.
-pop(0)이 있기 때문에 deque까지는 필요 없었을 것 같다.
 그러나 deque.popleft가 시간복잡도가 O(1)로 list의 pop(0)보다 좀 더 빠르다.
-그리고 회전하는 시간은 my code에서 리스트 전체를 탐색했는데 study code처럼 단순 비교를 하면 더 빠르다.
+그리고 회전하는 시간은 my code에서 사전을 탐색했고 study code는 단순 index 비교를 했다.
 (회전 시간이 순서대로 입력되는 것을 이용한 방법이다)
 """

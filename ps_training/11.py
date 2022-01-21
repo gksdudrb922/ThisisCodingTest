@@ -24,118 +24,55 @@ X는 10,000 이하의 양의 정수이며, 방향 전환 정보는 X가 증가�
 # my code
 from collections import deque
 
-n = int(input())
-board = [[0] * n for _ in range(n)]
 
+n = int(input())
 k = int(input())
-for _ in range(k):
-    apple_x, apple_y = map(int, input().split())
-    board[apple_x - 1][apple_y - 1] = 1
-
-l = int(input())
-direction = dict()
-for _ in range(l):
-    direction_x, direction_c = input().split()
-    direction[int(direction_x)] = direction_c
-
-nx = 0
-ny = 0
-end_x = 0
-end_y = 0
-history = deque([])
-dx = [0, 1, 0, -1]
-dy = [1, 0, -1, 0]
-direction_index = 0
-result = 0
-while True:
-
-    result += 1
-    nx += dx[direction_index]
-    ny += dy[direction_index]
-
-    if nx < 0 or nx >= n or ny < 0 or ny >= n or board[nx][ny] == 2:
-        break
-
-    if result in direction:
-        if direction[result] == 'L':
-            direction_index -= 1
-            if direction_index == -1:
-                direction_index = 3
-        elif direction[result] == 'D':
-            direction_index += 1
-            if direction_index == 4:
-                direction_index = 0
-
-    history.append((nx, ny))
-    if board[nx][ny] == 1:
-        board[nx][ny] = 2
-    else:
-        board[nx][ny] = 2
-        board[end_x][end_y] = 0
-        end = history.popleft()
-        end_x = end[0]
-        end_y = end[1]
-
-print(result)
-# O(1)
-
-#new
-n = int(input())
-data = [[0] * (n + 2) for _ in range(n + 2)]
+board = [[0] * (n + 2) for _ in range(n + 2)]
 for i in range(n + 2):
-    for j in range(n + 2):
-        if i == 0 or j == 0 or i == n + 1 or j == n + 1:
-            data[i][j] = 1
-
-k = int(input())
+    board[0][i] = 1
+    board[i][0] = 1
+    board[n + 1][i] = 1
+    board[i][n + 1] = 1
 for _ in range(k):
     x, y = map(int, input().split())
-    data[x][y] = 2
-
+    board[x][y] = 2
 l = int(input())
-directions = dict()
+direction_change = dict()
 for _ in range(l):
-    temp = list(input().split())
-    directions[int(temp[0])] = temp[1]
+    x, c = input().split()
+    direction_change[int(x)] = c
 
+dx = [0, -1, 0, 1]
+dy = [1, 0, -1, 0]
 x, y = 1, 1
-data[1][1] = 1
-snake = [(1, 1)]
-tail = 0
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]  # 북, 동, 남, 서
-d_index = 1  # 동
-count = 0
-while True:
-    count += 1
-    x = x + dx[d_index]
-    y = y + dy[d_index]
+snake = deque([(x, y)])
+board[x][y] = 1
+direction = 0
 
-    if data[x][y] == 1:
+result = 0
+while True:
+    result += 1
+
+    nx = x + dx[direction]
+    ny = y + dy[direction]
+
+    if board[nx][ny] == 1:
         break
 
-    if data[x][y] == 2:
-        data[x][y] = 1
-        snake.append((x, y))
-    else:  # 0
-        data[x][y] = 1
-        snake.append((x, y))
-        data[snake[tail][0]][snake[tail][1]] = 0
-        tail += 1
+    if board[nx][ny] == 0:
+        pop_x, pop_y = snake.popleft()
+        board[pop_x][pop_y] = 0
 
-    if count in directions:
-        if directions[count] == 'L':
-            d_index = 3 if d_index == 0 else d_index - 1
+    board[nx][ny] = 1
+    snake.append((nx, ny))
+
+    x, y = nx, ny
+    if result in direction_change:
+        if direction_change[result] == 'L':
+            direction = (direction + 1) % 4
         else:
-            d_index = 0 if d_index == 3 else d_index + 1
+            direction = 3 if direction == 0 else direction - 1
 
-print(count)
-#O(1)
-"""
-// learn
-뱀의 이동경로를 list로 표현했다. 뱀의 꼬리를 자를 때, 시간을 단축하기 위해 remove를 사용하지 않고
-tail 인덱스를 통해 꼬리를 표현했다.
-문제에서 n은 100이하라 괜찮지만 만약 n값이 엄청 크다면 메모리 공간이 부족해질 수 있기 때문에
-이전 코드처럼 deque를 통해 뱀의 이동경로를 나타내는 것도 좋은 방법이다. 
-또한 new 코드처럼 (n+2)*(n+2)로 map을 확장해 벽으로 둘러싸는 것도 좋은 방법이다.
-"""
+print(result)
+# O(n2)
+

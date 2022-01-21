@@ -13,6 +13,18 @@
 key로 lock을 풀 수 있다면 True, 그렇지 않다면 False
 """
 # my code
+import copy
+
+
+def expand_matrix(a):
+    n = len(a)
+    expand_a = [[0] * 3 * n for _ in range(3 * n)]
+    for i in range(n):
+        for j in range(n):
+            expand_a[i + n][j + n] = a[i][j]
+    return expand_a
+
+
 def rotate_a_matrix_by_90_degree(a):
     n = len(a) # 행 길이 계산
     m = len(a[0]) # 열 길이 계산
@@ -22,39 +34,39 @@ def rotate_a_matrix_by_90_degree(a):
             result[j][n - i - 1] = a[i][j]
     return result
 
-def match(lock,key,x,y):
-  n=len(lock)//3
-  m=len(key)
-  false_flag=0
-  for i in range(m):
-    for j in range(m):
-      lock[i+x][j+y]+=key[i][j]
 
-  for i in range(n,2*n):
-    for j in range(n,2*n):
-      if lock[i][j]!=1:
-        false_flag=1
-  for i in range(m):
-    for j in range(m):
-      lock[i+x][j+y]-=key[i][j]
-  if false_flag==1:
-    return False
-  else:
+def is_unlock(key, lock, x, y):
+    lock_temp = copy.deepcopy(lock)
+    m = len(key)
+    n = len(lock)
+    for i in range(m):
+        for j in range(m):
+            lock_temp[i + x][j + y] += key[i][j]
+
+    for i in range(n//3, n - n//3):
+        for j in range(n//3, n - n//3):
+            if lock_temp[i][j] != 1:
+                return False
+
     return True
 
-def solution(key,lock):
-  n=len(lock)
 
-  new_lock=[[1]*(3*n) for _ in range(3*n)]
-  for i in range(n):
-    for j in range(n):
-      new_lock[i+n][j+n]=lock[i][j]
+def solution(key, lock):
+    m = len(key)
+    n = len(lock)
+    expand_lock = expand_matrix(lock)
 
-  for i in range(1,2*n):
-    for j in range(1,2*n):
-      for _ in range(4):
-        key=rotate_a_matrix_by_90_degree(key)
-        if match(new_lock,key,i,j):
-          return True
-  return False
+    for i in range(n - m + 1, 2 * n):
+        for j in range(n - m + 1, 2 * n):
+            for _ in range(4):
+                key = rotate_a_matrix_by_90_degree(key)
+                if is_unlock(key, expand_lock, i, j):
+                    return True
+
+    return False
+
+
+key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
+lock = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
+print(solution(key, lock))
 # O(1)

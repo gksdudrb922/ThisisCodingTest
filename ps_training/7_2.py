@@ -25,9 +25,10 @@ if summary == 0:
     print("LUCKY")
 else:
     print("READY")
+
+
 # O(1)
 """
 // learn
-my code와 풀이가 같다.
-다만 여기서는 summary 변수 하나만 사용해서 왼쪽 부분과 오른쪽 부분의 합이 같은지 체크했다.
+summary 변수 하나만 사용해서 왼쪽 부분과 오른쪽 부분의 합이 같은지 체크했다.
 """

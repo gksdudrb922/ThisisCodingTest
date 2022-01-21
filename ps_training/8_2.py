@@ -31,9 +31,6 @@ if value != 0:
 
 # 최종 결과 출력(리스트를 문자열로 변환하여 출력)
 print(''.join(result))
+
+
 # O(nlogn), n = len(s)
-"""
-// learn
-my code와 동일한 풀이다.
-문자열이 알파벳으로 구성되어 있는지 확인하는 isalpha()메서드가 있다.(대소문자 관계 없다)
-"""

@@ -9,16 +9,19 @@
 문제에서 요구하는 정답
 """
 # my code
-s=input()
-slist=[]
-sum=0
-for data in list(s):
-  if '0'<=data<='9':
-    sum+=int(data)
-  else:
-    slist.append(data)
-slist.sort()
-if sum!=0:
-  slist.append(str(sum))
-print(''.join(slist))
+s = input()
+
+result = ""
+summary = 0
+for x in s:
+    if x.isalpha():
+        result += x
+    else:
+        summary += int(x)
+
+result = ''.join(sorted(result))
+if summary != 0:
+    result += str(summary)
+
+print(result)
 # O(nlogn), n = len(s)

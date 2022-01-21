@@ -12,36 +12,43 @@
 // output
 취약 지점을 점검하기 위해 보내야 하는 친구 수의 최솟값을 출력한다.
 """
-# study, 풀지 못함
+# my code
 from itertools import permutations
 
+
 def solution(n, weak, dist):
-    # 길이를 2배로 늘려서 '원형'을 일자 형태로 변형
-    length = len(weak)
-    for i in range(length):
+    answer = 1e9
+    dist_permutations = list(permutations(dist, len(dist)))
+    goal_count = len(weak)
+    for i in range(len(weak)):
         weak.append(weak[i] + n)
-    answer = len(dist) + 1 # 투입할 친구 수의 최솟값을 찾아야 하므로 len(dist) + 1로 초기화
-    # 0부터 length - 1까지의 위치를 각각 시작점으로 설정
-    for start in range(length):
-        # 친구를 나열하는 모든 경우 각각에 대하여 확인
-        for friends in list(permutations(dist, len(dist))):
-            count = 1 # 투입할 친구의 수
-            # 해당 친구가 점검할 수 있는 마지막 위치
-            position = weak[start] + friends[count - 1]
-            # 시작점부터 모든 취약한 지점을 확인
-            for index in range(start, start + length):
-                # 점검할 수 있는 위치를 벗어나는 경우
-                if position < weak[index]:
-                    count += 1 # 새로운 친구를 투입
-                    if count > len(dist): # 더 투입이 불가능하다면 종료
+
+    for dist_permutation in dist_permutations:
+        for start_index in range(0, len(weak)//2):
+            start = weak[start_index]
+            check_count = 0
+            friend_count = 0
+            for d in dist_permutation:
+                friend_count += 1
+                end = start + d
+                for i in range(start_index, len(weak)):
+                    if end >= weak[i]:
+                        check_count += 1
+                    else:
+                        start_index = i
+                        start = weak[start_index]
                         break
-                    position = weak[index] + friends[count - 1]
-            answer = min(answer, count) # 최솟값 계산
-    if answer > len(dist):
+
+                if check_count >= goal_count:
+                    answer = min(answer, friend_count)
+                    break
+
+    if answer == 1e9:
         return -1
     return answer
-# O(??), 변수들의 값이나 길이가 작아 측정이 힘들다.
-"""
-// learn
-원형 데이터를 탐색하는 경우 길이를 두 배로 해서 선형적으로 보는게 편하다.
-"""
+
+
+n = 12
+weak = [1, 3, 4, 9, 10]
+dist = [3, 5, 7]
+print(solution(n, weak, dist))

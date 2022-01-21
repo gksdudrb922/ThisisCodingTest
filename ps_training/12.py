@@ -18,31 +18,36 @@ b : 0(삭제), 1(설치)
 x,y : 설치 or 삭제할 좌표
 a : 0(기둥), 1(보)
 """
+
+
 # my code
-def check(answer):
-  for i in range(len(answer)):
-    x,y,a=answer[i]
-    if a==0:
-      if not (y==0 or [x-1,y,1] in answer or [x,y,1] in answer or [x,y-1,0] in answer):
-        return False
-    else:
-      if not ([x,y-1,0] in answer or [x+1,y-1,0] in answer or ([x-1,y,1] in answer and [x+1,y,1] in answer)):
-        return False
-  return True
+def check(structure):
+    for x, y, a in structure:
+        if a == 0:
+            if not (y == 0 or (x - 1, y, 1) in structure or (x, y, 1) in structure or (x, y - 1, 0) in structure):
+                return False
+        else:
+            if not ((x, y - 1, 0) in structure or (x + 1, y - 1, 0) in structure or (
+                    (x - 1, y, 1) in structure and (x + 1, y, 1) in structure)):
+                return False
+    return True
+
 
 def solution(n, build_frame):
-  answer = []
+    structure = set()
+    for x, y, a, b in build_frame:
+        if b == 0:
+            structure.remove((x, y, a))
+            if not check(structure):
+                structure.add((x, y, a))
+        else:
+            structure.add((x, y, a))
+            if not check(structure):
+                structure.remove((x, y, a))
 
-  for i in range(len(build_frame)):
-    x,y,a,b=build_frame[i]
-    if b==1:
-      answer.append([x,y,a])
-      if check(answer)==False:
-        answer.remove([x,y,a])
-    else:
-      answer.remove([x,y,a])
-      if check(answer)==False:
-        answer.append([x,y,a])
-  answer=sorted(answer)
-  return answer
-# O(m3), m=len(build_frame)
+    answer = []
+    for x, y, a in structure:
+        answer.append([x, y, a])
+    answer.sort()
+    return answer
+# O(m2), m=len(build_frame)

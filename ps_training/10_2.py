@@ -59,10 +59,6 @@ def solution(key, lock):
                     for j in range(m):
                         new_lock[x + i][y + j] -= key[i][j]
     return False
+
+
 # O(1)
-"""
-// learn
-my code와 동일한 풀이다.
-2차원 배열 90도 회전 -> 팀노트
-map을 확장하는 경우도 생각할 수 있어야 한다.
-"""
