@@ -49,9 +49,5 @@ def bfs(x, y):
 
 # BFS를 수행한 결과 출력
 print(bfs(0, 0))
+
 # O(nm)
-"""
-// learn
-12345처럼 붙어있는 경우 list(map(int,input())을 통해 값을 받을 수 있다.
-count 필드를 추가한 my code와 달리 아얘 graph의 값을 count로 사용했다.
-"""

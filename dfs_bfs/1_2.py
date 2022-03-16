@@ -45,12 +45,4 @@ for i in range(n):
       result += 1
 
 print(result)  # 정답 출력
-# O(n2m2)
-"""
-// learn
-파이썬 함수 내부에서 외부 변수 사용가능. 단, 변경은 불가능
-study code에서는 dfs를 사용했고 my code와 로직이 살짝 다르다.
-visited 여부를 0or1로 표현했고 not visited이면(graph[x][y]==1) 상하좌우 모두 dfs 호출을 한다.
-
-복잡도 : n, m의 범위가 1000인데 my code, study code 모두 1초 안에 처리가 힘들지 않을까 싶다.
-"""
+# O(nm)
