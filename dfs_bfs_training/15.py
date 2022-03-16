@@ -16,43 +16,42 @@ X로부터 출발하여 도달할 수 있는 도시 중에서, 최단 거리가 
 이 때 도달할 수 있는 도시 중에서, 최단 거리가 K인 도시가 하나도 존재하지 않으면 -1을 출력한다.
 """
 # my code
-import sys
 from collections import deque
 
-# BFS 메서드 정의
-def bfs(graph,start,visited):
-  result=[]
-  # 큐(Queue) 구현을 위해 deque 라이브러리 사용
-  queue=deque([(start,0)])
-  # 현재 노드를 방문 처리
-  visited[start]=True
-  # 큐가 빌 때까지 반복
-  while queue:
-    # 큐에서 하나의 원소를 뽑아 출력
-    (v,count)=queue.popleft()
-    # 해당 원소와 연결된, 아직 방문하지 않은 원소들을 큐에 삽입
-    for i in graph[v]:
-      if not visited[i]:
-        queue.append((i,count+1))
-        visited[i]=True
-        if count+1==k:
-          result.append(i)
-  return result
 
-input = sys.stdin.readline
-n,m,k,x=map(int,input().split())
-graph=[[] for _ in range(n+1)]
-visited=[False]*(n+1)
+n, m, k, x = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
 for _ in range(m):
-  start,end=map(int,input().split())
-  graph[start].append(end)
-result=bfs(graph,x,visited)
-if len(result)==0:
-  print(-1)
+    a, b = map(int, input().split())
+    graph[a].append(b)
+
+visited = [False] * (n + 1)
+
+
+def bfs(v):
+    queue = deque([(v, 0)])
+    visited[v] = True
+
+    while queue:
+        v, distance = queue.popleft()
+        if distance == k:
+            result.append(v)
+        for i in graph[v]:
+            if not visited[i]:
+                queue.append((i, distance + 1))
+                visited[i] = True
+
+
+result = []
+bfs(x)
+
+if len(result) == 0:
+    print(-1)
 else:
-  result.sort()
-  for i in result:
-    print(i)
+    result.sort()
+    for x in result:
+        print(x)
+
 # O(N+M)
 
 # new

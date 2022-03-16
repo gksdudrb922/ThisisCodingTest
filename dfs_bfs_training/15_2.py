@@ -16,9 +16,8 @@ X로부터 출발하여 도달할 수 있는 도시 중에서, 최단 거리가 
 이 때 도달할 수 있는 도시 중에서, 최단 거리가 K인 도시가 하나도 존재하지 않으면 -1을 출력한다.
 """
 # study
-import sys
 from collections import deque
-input = sys.stdin.readline
+
 # 도시의 개수, 도로의 개수, 거리 정보, 출발 도시 번호
 n, m, k, x = map(int, input().split())
 graph = [[] for _ in range(n + 1)]
@@ -54,13 +53,9 @@ for i in range(1, n + 1):
 # 만약 최단 거리가 K인 도시가 없다면, -1 출력
 if check == False:
     print(-1)
+
 # O(N+M)
 """
 // learn
-1. input = sys.stdin.readline을 하지 않으면 입력 시간 초과로 테스트 실패한다.
-기존 study code는 이러한 부분이 반영되어 있지 않아 따로 추가했다.
--> 입력할 데이터가 100만개가 넘어가면 이 입력 방식을 사용하는 것이 좋겠다.
-
-2. visited 대신 distance를 사용 (distance==-1을 visited False로 대체)
--> 큐에 (v,count) 대신 v 사용 
+visited 대신 distance를 사용 (distance == -1로 visited == False 대체)
 """
