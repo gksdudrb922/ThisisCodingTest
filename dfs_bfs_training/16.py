@@ -68,4 +68,5 @@ for blank_three in blanks_combi:
     result = max(result, count)
 
 print(result)
+
 # O(nmC3 * nm)

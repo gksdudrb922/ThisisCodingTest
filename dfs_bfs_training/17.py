@@ -22,32 +22,34 @@ S초 뒤에 (X,Y)에 존재하는 바이러스의 종류를 출력한다. 만약
 """
 # my code
 from collections import deque
-n,k=map(int,input().split())
-graph=[]
-data=[]
-dx=[-1,1,0,0]
-dy=[0,0,-1,1]
+
+
+n, k = map(int, input().split())
+data = []
+virus = []
 for i in range(n):
-  graph.append(list(map(int,input().split())))
-  for j in range(n):
-    if graph[i][j]!=0:
-      data.append((graph[i][j],0,i,j))
-s,result_x,result_y=map(int,input().split())
-data=sorted(data,key=lambda x:x[0])
+    data.append(list(map(int, input().split())))
+    for j in range(n):
+        if data[i][j] != 0:
+            virus.append((data[i][j], 0, i, j))
+target_s, target_x, target_y = map(int, input().split())
 
-q=deque(data)
-result=0
-while q:
-  virus,count,x,y=q.popleft()
-  if x==result_x-1 and y==result_y-1 and count<=s:
-    result=virus
-    break
-  for i in range(4):
-    nx=x+dx[i]
-    ny=y+dy[i]
-    if 0<=nx<n and 0<=ny<n and graph[nx][ny]==0:
-      graph[nx][ny]=virus
-      q.append((virus,count+1,nx,ny))
+virus.sort()
+queue = deque(virus)
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+while queue:
+    v, s, x, y = queue.popleft()
+    if s == target_s:
+        break
 
-print(result)
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if 0 <= nx < n and 0 <= ny < n and data[nx][ny] == 0:
+            data[nx][ny] = v
+            queue.append((v, s + 1, nx, ny))
+
+print(data[target_x - 1][target_y - 1])
+
 # O(n2)

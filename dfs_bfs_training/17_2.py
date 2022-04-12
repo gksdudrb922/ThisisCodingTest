@@ -65,14 +65,10 @@ while q:
         q.append((virus, s + 1, nx, ny))
 
 print(graph[target_x - 1][target_y - 1])
+
 # O(n2)
 """
 // learn
-my code와 동일한 풀이다.
-다만, 반복문 종료조건의 차이가 있다.
-my code는 시간이 s보다 흐르기 전에 target_x, target_y에 바이러스가 생기면 종료하고 그 때의 바이러스를 출력한다.
-stduy code는 시간이 s까지 흘렀을 때 종료하고 graph[target_x-1][target_y-1]을 출력한다.
 키 포인트는 큐에 바이러스, 시간, x좌표, y좌표를 한 번에 저장하는 것이다.
-
 자료구조에서 함께 처리해야 하는 정보에 대해서는 한 번에 튜플로 묶어서 자료구조에 저장하는 것이 편하다.
 """

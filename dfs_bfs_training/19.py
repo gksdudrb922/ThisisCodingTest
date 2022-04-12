@@ -19,49 +19,6 @@ N개의 수로 이루어진 수열 A1, A2, ..., AN이 주어진다.
 또한, 앞에서부터 계산했을 때, 중간에 계산되는 식의 결과도 항상 -10억보다 크거나 같고, 10억보다 작거나 같다.
 """
 # my code
-from itertools import permutations
-n=int(input())
-a=list(map(int,input().split()))
-data=list(map(int,input().split()))
-op=[]
-for i in range(data[0]):
-  op.append('+')
-for i in range(data[1]):
-  op.append('-')
-for i in range(data[2]):
-  op.append('*')
-for i in range(data[3]):
-  op.append('/')
-op_permu=list(permutations(op,len(op)))
-def calcurate(a,operands):
-  result=a[0]
-  for i in range(len(a)-1):
-    if operands[i]=='+':
-      result+=a[i+1]
-    elif operands[i]=='-':
-      result-=a[i+1]
-    elif operands[i]=='*':
-      result*=a[i+1]
-    elif operands[i]=='/':
-      if result<0:
-        result*=-1
-        result//=a[i+1]
-        result*=-1
-      else:
-        result//=a[i+1]
-  return result
-
-result_min=1e9
-result_max=-1e9
-for operands in op_permu:
-  result=calcurate(a,operands)
-  result_min=min(result_min,result)
-  result_max=max(result_max,result)
-print(result_max)
-print(result_min)
-# O(n!*n) -> PyPy3에서만 통과한다.
-
-#new
 from itertools import product
 n=int(input())
 a=list(map(int,input().split()))

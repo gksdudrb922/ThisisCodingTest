@@ -18,111 +18,49 @@ NxN 크기의 복도가 있다. 복도는 1x1 크기의 칸으로 나누어지�
 모든 학생들을 감시로부터 피하도록 할 수 있다면 "YES", 그렇지 않다면 "NO"를 출력한다.
 """
 # my code
-from itertools import combinations
-import copy
-
-def teacher_moniter(graph):
-  for x,y in teacher:
-    for i in range(x-1,-1,-1):
-      if graph[i][y]=='O':
-        break
-      elif graph[i][y]=='S':
-        return False
-    for i in range(x+1,n):
-      if graph[i][y]=='O':
-        break
-      elif graph[i][y]=='S':
-        return False
-    for j in range(y-1,-1,-1):
-      if graph[x][j]=='O':
-        break
-      elif graph[x][j]=='S':
-        return False
-    for j in range(y+1,n):
-      if graph[x][j]=='O':
-        break
-      elif graph[x][j]=='S':
-        return False
-  return True
-
-
-n=int(input())
-graph=[]
-blank=[]
-teacher=[]
-dx=[-1,1,0,0]
-dy=[0,0,-1,1]
-for i in range(n):
-  graph.append(input().split())
-  for j in range(n):
-    if graph[i][j]=='X':
-      blank.append((i,j))
-    elif graph[i][j]=='T':
-      teacher.append((i,j))
-blank_combi=list(combinations(blank,3))
-result='NO'
-for obstacles in blank_combi:
-  temp=copy.deepcopy(graph)
-  for x,y in obstacles:
-    temp[x][y]='O'
-  if teacher_moniter(temp)==False:
-    continue
-  else:
-    result='YES'
-    break
-print(result)
-# O(nC3*n2)
-
-#new
 n = int(input())
-graph = []
+data = []
 teachers = []
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-for i in range(n):
-  graph.append(list(input().split()))
-  for j in range(n):
-    if graph[i][j] == 'T':
-      teachers.append((i, j))
+for x in range(n):
+    data.append(input().split())
+    for y in range(n):
+        if data[x][y] == "T":
+            teachers.append((x, y))
 
-result = 'NO'
+result = "NO"
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+
+
 def dfs(count):
-  global result
-  if count == 3:
-    for x, y in teachers:
-      temp = (x, y)
-      for i in range(4):
-        x, y = temp
-        while True:
-          x = x + dx[i]
-          y = y + dy[i]
-
-          if not (0 <= x < n and 0 <= y < n) or graph[x][y] == 'O':
-            break
-
-          elif graph[x][y] == 'S':
-            return
-    result = 'YES'
-
-  else:
-    for i in range(n):
-      for j in range(n):
-        if graph[i][j] == 'X':
-          graph[i][j] = 'O'
-          count += 1
-          dfs(count)
-          count -= 1
-          graph[i][j] = 'X'
+    global result
+    if count == 3:
+        for teacher in teachers:
+            for direction in range(4):
+                nx, ny = teacher
+                while True:
+                    nx += dx[direction]
+                    ny += dy[direction]
+                    if 0 <= nx < n and 0 <= ny < n:
+                        if data[nx][ny] == "O":
+                            break
+                        elif data[nx][ny] == "S":
+                            return
+                    else:
+                        break
+        result = "YES"
+    else:
+        for i in range(n):
+            for j in range(n):
+                if data[i][j] == "X":
+                    data[i][j] = "O"
+                    count += 1
+                    dfs(count)
+                    data[i][j] = "X"
+                    count -= 1
 
 
 dfs(0)
 print(result)
-"""
-// learn
-19번 문제에서 배운대로 
-count-=1
-dfs()
-count+=1
-구조를 통해 장애물을 설치하는 순서를 결정하고 해당 조건이 맞으면(count==3) 원하는 로직을 구현하는
-코드를 작성해 보았다.
-"""
+
+# O(nC3*n2)

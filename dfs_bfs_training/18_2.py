@@ -65,7 +65,7 @@ def solution(p):
                 u[i] = '('
         answer += "".join(u)
     return answer
-# O(??)
+# O(len(p))
 """
 // learn
 my code와 동일한 풀이다.

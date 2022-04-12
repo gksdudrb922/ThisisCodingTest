@@ -16,7 +16,7 @@ r행 c열에 주어지는 정수는 A[r][c]의 값이다. (0 ≤ A[r][c] ≤ 100
 // output
 인구 이동이 몇 번 발생하는지 첫째 줄에 출력한다.
 """
-# study, 풀지 못함
+# study
 from collections import deque
 
 # 땅의 크기(N), L, R 값을 입력받기

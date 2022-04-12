@@ -102,7 +102,3 @@ if find:
 else:
     print('NO')
 # O(nC3*n2)
-"""
-// learn
-my code와 같이 조합을 활용한 풀이다.
-"""

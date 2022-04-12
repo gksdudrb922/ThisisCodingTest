@@ -18,45 +18,43 @@ v는 빈 문자열이 될 수 있습니다.
 // output
 올바른 괄호 문자열로 변환한 결과
 """
+
+
 # my code
-def check(u):
-  if u[0] == '(' and u[len(u) - 1] == ')':
-    return True
-  else:
-    return False
-
-
 def solution(p):
-  # 1
-  if len(p) == 0:
-    return p
+    answer = ""
+    if len(p) == 0:
+        return answer
 
-  # 2
-  u = ''
-  v = ''
-  for c in p:
-    if u.count('(') != u.count(')') or len(u) == 0:
-      u += c
+    left_param_count = 0
+    right_param_count = 0
+    for i in range(len(p)):
+        if p[i] == "(":
+            left_param_count += 1
+        else:
+            right_param_count += 1
+
+        if left_param_count == right_param_count:
+            u = p[:i + 1]
+            v = p[i + 1:]
+            break
+
+    if u[0] == "(" and u[len(u) - 1] == ")":
+        answer = u + solution(v)
     else:
-      v += c
+        answer = "("
+        answer += solution(v)
+        answer += ")"
+        u = u[1:len(u) - 1]
+        for x in u:
+            if x == "(":
+                answer += ")"
+            else:
+                answer += "("
 
-  # 3
-  if check(u) == True:
-    # 3-1
-    return u + solution(v)
+    return answer
 
-  # 4
-  else:
-    # 4-1,2,3
-    x = '(' + solution(v) + ')'
-    # 4-4
-    temp = list(u[1:len(u) - 1])
-    for i in range(len(temp)):
-      if temp[i] == '(':
-        temp[i] = ')'
-      else:
-        temp[i] = '('
-    u = ''.join(temp)
-    # 4-5
-    return x + u
-# O(??)
+
+print(solution("()))((()"))
+
+# O(len(p))
