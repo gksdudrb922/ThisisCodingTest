@@ -9,29 +9,15 @@
 모든 학생의 이름을 성적이 낮은 순서대로 출력한다.
 """
 # my code
-n=int(input())
-data=[]
+n = int(input())
+data = []
 for _ in range(n):
-  name,score=input().split()
-  data.append((name,int(score)))
+    name, score = input().split()
+    data.append((name, int(score)))
 
-def less_score(data):
-  return data[1]
-result=sorted(data,key=less_score)
-for info in result:
-  print(info[0],end=' ')
+data.sort(key=lambda x:x[1])
+
+for x in data:
+    print(x[0], end=' ')
+
 # O(nlogn)
-
-#new
-n=int(input())
-data=dict()
-for _ in range(n):
-  a,b=input().split()
-  data[a]=int(b)
-data=sorted(data.items(),key=lambda x:x[1])
-for name in data:
-  print(name[0],end=' ')
-"""
-// learn
-사전 방식을 추가했다. items() 메서드를 사용했다.
-"""

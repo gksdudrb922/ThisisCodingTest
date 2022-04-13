@@ -26,7 +26,3 @@ array = sorted(array, key=lambda student: student[1])
 for student in array:
     print(student[0], end=' ')
 # O(nlogn)
-"""
-// learn
-my code와 동일한 풀이다.
-"""

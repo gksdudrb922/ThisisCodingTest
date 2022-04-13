@@ -9,11 +9,14 @@
 수열을 내림차순으로 정렬
 """
 # my code
-n=int(input())
-data=[]
+n = int(input())
+data = []
 for _ in range(n):
-  data.append(int(input()))
-result=sorted(data,reverse=True)
-for i in result:
-  print(i,end=' ')
+    data.append(int(input()))
+
+data.sort(reverse=True)
+
+for x in data:
+    print(x, end=' ')
+
 # O(nlogn)

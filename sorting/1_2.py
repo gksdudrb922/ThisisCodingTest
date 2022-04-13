@@ -25,7 +25,3 @@ array = sorted(array, reverse=True)
 for i in array:
   print(i, end=' ')
 # O(nlogn)
-"""
-// learn
-my code와 동일하다.
-"""
