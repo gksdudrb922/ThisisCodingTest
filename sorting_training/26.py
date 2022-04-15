@@ -11,17 +11,21 @@ N개의 숫자 카드 묶음의 각각의 크기가 주어질 때, 최소한 몇
 """
 # my code
 import heapq
-n=int(input())
-data=[]
-for _ in range(n):
-  heapq.heappush(data,int(input()))
 
-result=0
-while len(data)>1:
-  first=heapq.heappop(data)
-  second=heapq.heappop(data)
-  summary=first+second
-  result+=summary
-  heapq.heappush(data,summary)
+
+n = int(input())
+data = []
+for _ in range(n):
+    heapq.heappush(data, int(input()))
+
+result = 0
+if n > 1:
+    while len(data) > 1:
+        x1 = heapq.heappop(data)
+        x2 = heapq.heappop(data)
+        heapq.heappush(data, x1 + x2)
+        result += (x1 + x2)
+
 print(result)
+
 #O(nlogn)

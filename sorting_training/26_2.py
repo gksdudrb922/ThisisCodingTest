@@ -34,7 +34,3 @@ while len(heap) != 1:
 
 print(result)
 # O(nlogn)
-"""
-// learn
-새 값이 들어올 때마다 정렬을 해야하는 경우는 이처럼 heapq를 사용하는 것이 편리하다.
-"""

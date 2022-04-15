@@ -13,8 +13,14 @@
 단, 안테나를 설치할 수 있는 위치 값으로 여러 개의 값이 도출될 경우 가장 작은 값을 출력한다.
 """
 # my code
-n=int(input())
-data=list(map(int,input().split()))
+n = int(input())
+data = list(map(int, input().split()))
+
 data.sort()
-print(data[len(data)//2-1])
+
+if len(data) % 2 == 0:
+    print(data[len(data)//2 - 1])
+else:
+    print(data[len(data) // 2])
+
 # O(nlogn)

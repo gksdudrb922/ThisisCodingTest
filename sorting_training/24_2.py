@@ -20,7 +20,3 @@ a.sort()
 # 중간값(median)을 출력
 print(a[(n - 1) // 2])
 # O(nlogn)
-"""
-// learn
-my code와 동일한 풀이다.
-"""

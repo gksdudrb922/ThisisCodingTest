@@ -17,12 +17,15 @@
 문제에 나와있는 정렬 기준으로 정렬한 후 첫째 줄부터 N개의 줄에 걸쳐 각 학생의 이름을 출력한다.
 """
 # my code
-n=int(input())
-data=[]
+n = int(input())
+data = []
 for _ in range(n):
-  name,korean,english,math=input().split()
-  data.append((name,int(korean),int(english),int(math)))
-result=sorted(data,key=lambda x:(-x[1],x[2],-x[3],x[0]))
-for x in result:
-  print(x[0])
+    name, korean, english, math = input().split()
+    data.append((name, int(korean), int(english), int(math),))
+
+data.sort(key=lambda x: (-x[1], x[2], -x[3], x[0]))
+
+for x in data:
+    print(x[0])
+
 # O(nlogn)
