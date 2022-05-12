@@ -17,16 +17,19 @@ start = 0
 end = max(data)
 result = 0
 while start <= end:
-    sum_value = 0
     mid = (start + end) // 2
+
+    remainder = 0
     for x in data:
         if x > mid:
-            sum_value += (x - mid)
+            remainder += (x - mid)
 
-    if sum_value > m:
-        result=mid
+    if remainder >= m:
+        result = mid
         start = mid + 1
     else:
         end = mid - 1
+
 print(result)
+
 # O(nlogk), k=len(max(data))

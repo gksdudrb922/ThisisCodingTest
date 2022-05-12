@@ -38,8 +38,6 @@ while(start <= end):
 
 # 정답 출력
 print(result)
+
 # O(nlogk), k=len(max(data))
-"""
-// learn
-최소 m을 만족하는 자르는 길이를 구하는 것이기 때문에 total>=m인 조건에 대해 result 값을 기록해줘야 한다.
-"""
+
