@@ -26,37 +26,36 @@ from bisect import bisect_left, bisect_right
 
 
 def count_by_range(a, left_value, right_value):
-  right_index = bisect_right(a, right_value)
-  left_index = bisect_left(a, left_value)
-  return right_index - left_index
-
-
-def logic(query, data):
-  index = query.count('?')
-  left_value = query[:len(query) - index] + ('a' * index)
-  right_value = query[:len(query) - index] + ('z' * index)
-  return count_by_range(data[len(query)], left_value, right_value)
+    right_index = bisect_right(a, right_value)
+    left_index = bisect_left(a, left_value)
+    return right_index - left_index
 
 
 def solution(words, queries):
-  reverse_words = []
-  for word in words:
-    reverse_words.append(word[::-1])
+    words_by_count = [[] for _ in range(10001)]
+    words_by_count_reverse = [[] for _ in range(10001)]
+    for word in words:
+        length = len(word)
+        words_by_count[length].append(word)
+        words_by_count_reverse[length].append(word[::-1])
 
-  words.sort()
-  reverse_words.sort()
+    for i in range(1, len(words_by_count)):
+        words_by_count[i].sort()
+        words_by_count_reverse[i].sort()
 
-  data = [[] for _ in range(10001)]
-  reverse_data = [[] for _ in range(10001)]
-  for i in range(len(words)):
-    data[len(words[i])].append(words[i])
-    reverse_data[len(reverse_words[i])].append(reverse_words[i])
+    answer = []
+    for query in queries:
+        if query[0] != "?":
+            answer.append(count_by_range(words_by_count[len(query)], query.replace("?", "a"), query.replace("?", "z")))
+        else:
+            query_reverse = query[::-1]
+            answer.append(count_by_range(words_by_count_reverse[len(query)], query_reverse.replace("?", "a"), query_reverse.replace("?", "z")))
 
-  answer = []
-  for query in queries:
-    if query[0] != '?':
-      answer.append(logic(query, data))
-    else:
-      answer.append(logic(query[::-1], reverse_data))
-  return answer
+    return answer
+
+
+words = ["frodo", "front", "frost", "frozen", "frame", "kakao"]
+queries = ["fro??", "????o", "fr???", "fro???", "pro?"]
+print(solution(words, queries))
+
 # O(aloga or blogb), a=len(words), b=len(queries)

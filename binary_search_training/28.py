@@ -10,23 +10,22 @@
 고정점을 출력한다.. 고정점인 원소가 하나도 없다면 -1 출력.
 """
 # my code
-n=int(input())
-data=list(map(int,input().split()))
+n = int(input())
+data = list(map(int, input().split()))
 
-def binary_search(start,end):
-  while start<=end:
-    mid=(start+end)//2
-    if data[mid]==mid:
-      return mid
-    elif data[mid]>mid:
-      end=mid-1
-    else:
-      start=mid+1
-  return None
 
-result=binary_search(0,n-1)
-if result==None:
-  print(-1)
-else:
-  print(result)
+def binary_search(array, start, end):
+    while start <= end:
+        mid = (start + end) // 2
+        if array[mid] == mid:
+            return mid
+        elif array[mid] > mid:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return -1
+
+
+print(binary_search(data, 0, n - 1))
+
 # O(logn)

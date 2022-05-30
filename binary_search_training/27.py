@@ -11,18 +11,20 @@ N개의 원소를 가진 오름차순 수열에서 x의 개수를 구하라. 단
 # my code
 from bisect import bisect_left, bisect_right
 
-n,x=map(int,input().split())
-data=list(map(int,input().split()))
 
-def count_by_range(a,left_value,right_value):
-  right_index=bisect_right(a,right_value)
-  left_index=bisect_left(a,left_value)
-  return right_index-left_index
+def count_by_range(a, left_value, right_value):
+    right_index = bisect_right(a, right_value)
+    left_index = bisect_left(a, left_value)
+    return right_index - left_index
 
 
-result=count_by_range(data,x,x)
-if result>0:
-  print(result)
+n, x = map(int, input().split())
+data = list(map(int, input().split()))
+
+result = count_by_range(data, x, x)
+if result > 0:
+    print(result)
 else:
-  print(-1)
+    print(-1)
+
 # O(logn)

@@ -54,9 +54,4 @@ def solution(words, queries):
         answer.append(res)
     return answer
 # O(aloga or blogb), a=len(words), b=len(queries)
-"""
-// learn
-my code와 동일한 풀이다.
-다만, my code에서는 left_value, right_value를 슬라이싱으로 계산했다면,
-study code는 replace를 사용했다. replace는 O(n)이지만 문자열의 최대 길이가 10,000이기에 무리가 없다.
-"""
+
