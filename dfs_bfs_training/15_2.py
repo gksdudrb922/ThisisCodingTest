@@ -58,4 +58,5 @@ if check == False:
 """
 // learn
 visited 대신 distance를 사용 (distance == -1로 visited == False 대체)
+sys.stdin.readline을 사용해야 python에서 시간초과가 나지 않는다. 
 """
